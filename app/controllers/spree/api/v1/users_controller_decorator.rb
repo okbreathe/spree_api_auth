@@ -13,7 +13,7 @@ module Spree
 
           @user = Spree.user_class.new(user_params)
           if !@user.save
-            unauthorized
+            invalid_resource! @user
             return
           end
           @user.generate_spree_api_key!
@@ -22,7 +22,7 @@ module Spree
         def sign_in
           @user = Spree.user_class.find_by_email(params[:user][:email])
           if !@user.present? || !@user.valid_password?(params[:user][:password])
-            unauthorized
+            render 'invalid', status: 401
             return
           end
           @user.generate_spree_api_key! if @user.spree_api_key.blank?

@@ -4,6 +4,7 @@ Spree::Core::Engine.add_routes do
       resource :users do
         post :sign_up
         post :sign_in
+        post :forgot_password
       end
     end
   end

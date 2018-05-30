@@ -11,7 +11,10 @@ module Spree
             render 'spree/api/v1/users/user_exists', status: 400 and return
           end
 
-          @user = Spree.user_class.new(user_params)
+          @user = Spree.user_class.new(
+            user_params.slice( :email, :password, :password_confirmation)
+          )
+
           if !@user.save
             invalid_resource! @user
             return

@@ -5,6 +5,7 @@ Spree::Core::Engine.add_routes do
         post :sign_up
         post :sign_in
         post :forgot_password
+        patch :update_password
       end
     end
   end
